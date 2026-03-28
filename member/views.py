@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate
 from .serializers import RegisterSerializer
 
 
-# Custom JWT — บังคับใช้ email ผ่าน EmailAuthBackend
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
         email = attrs.get("email") or attrs.get("username")
@@ -16,7 +15,7 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         user = authenticate(
             request=self.context.get("request"),
-            username=email,  # EmailAuthBackend รับ username เป็น email
+            username=email,
             password=password,
         )
 

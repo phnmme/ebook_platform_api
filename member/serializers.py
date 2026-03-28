@@ -26,6 +26,6 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         password = validated_data.pop('password')
         user = SystemUser(**validated_data)
-        user.set_password(password)  # hash ถูกต้อง → login ได้
+        user.set_password(password)
         user.save()
         return user
