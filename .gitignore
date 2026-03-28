@@ -1,0 +1,45 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Django
+*.log
+*.pot
+*.pyc
+db.sqlite3
+db.sqlite3-journal
+
+# Media uploaded files
+/media/
+
+# Static files (collectstatic)
+static/
+staticfiles/
+
+# Environment
+.env
+*.env
+
+# VSCode
+.vscode/
+.history/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Packages build
+dist/
+build/
+
+# Pipenv / Poetry
+Pipfile.lock
+poetry.lock
