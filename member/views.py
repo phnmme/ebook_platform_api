@@ -6,6 +6,9 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework_simplejwt.exceptions import AuthenticationFailed
 from django.contrib.auth import authenticate
 from .serializers import RegisterSerializer
+from django.contrib.auth.signals import user_logged_in 
+from django.utils import timezone
+from .models import SystemUser, UsageHistory
 
 
 class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -21,6 +24,10 @@ class EmailTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         if not user or not user.is_active:
             raise AuthenticationFailed("No active account found with the given credentials")
+        
+        #สั่งให้บันทึกประวัติ Login
+        request = self.context.get("request")
+        user_logged_in.send(sender=user.__class__, request=request, user=user)
 
         refresh = self.get_token(user)
         return {
