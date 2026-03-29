@@ -21,12 +21,15 @@ urlpatterns = [
     path('api/login/', EmailTokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
 
-    path('api/admin/users/', admin_get_users),
+    path('api/admin/users/', admin_get_users),      # ส่ง role มาแยกประเภทได้ ?role=author , search ตามชื่อได้ ?fullname=picky , search ตามเลข userid ได้ *api/admin/users/2/
     path('api/admin/users/<int:user_id>/', admin_get_user),
     path('api/admin/users/<int:user_id>/update/', admin_update_user),
     path('api/admin/users/<int:user_id>/delete/', admin_delete_user),
+    path('api/admin/dashboard/summary/', dashboard_summary),
+    path('api/admin/dashboard/monthly/', dashboard_monthly),
+    path('api/admin/dashboard/daily/', dashboard_daily),
+    path('api/admin/top-users/', top_users_by_frequency),   #ส่ง role มาแยกประเภทได้ ?role=author
 
-]
     path('admin/usage/history', usage_history),
     path('admin/usage/last-login', usage_last_login),
     path('admin/usage/frequency', usage_frequency),
