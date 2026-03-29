@@ -12,7 +12,7 @@ class SystemUser(AbstractUser):
     userid = models.BigAutoField(primary_key=True)
     fullname = models.CharField(max_length=255)
     phone = models.CharField(max_length=20, blank=True)
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='user')
 
     # เฉพาะ Author
     idcard = models.FileField(upload_to='idcard/', blank=True, null=True)

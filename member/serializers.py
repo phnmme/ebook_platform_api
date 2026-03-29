@@ -1,7 +1,6 @@
 from rest_framework import serializers
 from .models import SystemUser
 
-
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemUser
@@ -29,3 +28,10 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.set_password(password)
         user.save()
         return user
+    
+
+
+class AdminUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SystemUser
+        exclude = ['password']
