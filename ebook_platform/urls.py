@@ -1,6 +1,15 @@
 from django.contrib import admin
 from django.urls import path
-from member.views import register_user, reset_password, EmailTokenObtainPairView
+from member.views import (
+    register_user,
+    reset_password,
+    EmailTokenObtainPairView,
+    usage_history,
+    usage_last_login,
+    usage_frequency,
+    usage_daily_frequency,
+    usage_monthly_frequency,
+)
 from rest_framework_simplejwt.views import TokenRefreshView
 from member.views_admin import *
 
@@ -17,4 +26,10 @@ urlpatterns = [
     path('api/admin/users/<int:user_id>/update/', admin_update_user),
     path('api/admin/users/<int:user_id>/delete/', admin_delete_user),
 
+]
+    path('admin/usage/history', usage_history),
+    path('admin/usage/last-login', usage_last_login),
+    path('admin/usage/frequency', usage_frequency),
+    path('admin/usage/daily-frequency', usage_daily_frequency),
+    path('admin/usage/monthly-frequency', usage_monthly_frequency),
 ]

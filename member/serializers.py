@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import SystemUser
+from .models import SystemUser, UsageHistory
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,3 +35,12 @@ class AdminUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = SystemUser
         exclude = ['password']
+
+
+class UsageHistorySerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField(source="user.userid", read_only=True)
+    user_email = serializers.EmailField(source="user.email", read_only=True)
+
+    class Meta:
+        model = UsageHistory
+        fields = ["user_id", "user_email", "action", "timestamp"]
