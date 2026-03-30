@@ -1,6 +1,10 @@
 from django.contrib import admin
 from django.urls import path
 from member.views import (
+    chart_monthly,
+    chart_weekly,
+    dashboard_stats,
+    profile_view,
     register_user,
     reset_password,
     EmailTokenObtainPairView,
@@ -18,8 +22,15 @@ urlpatterns = [
     path('api/register/', register_user),
     path('api/reset-password/', reset_password),
 
+    path("api/dashboard-stats/", dashboard_stats),
+    path("api/chart-weekly/", chart_weekly),
+    path("api/chart-monthly/", chart_monthly),
+
+
     path('api/login/', EmailTokenObtainPairView.as_view()),
     path('api/token/refresh/', TokenRefreshView.as_view()),
+    
+    path('api/profile', profile_view),
 
     path('api/admin/users/', admin_get_users),      # ส่ง role มาแยกประเภทได้ ?role=author , search ตามชื่อได้ ?fullname=picky , search ตามเลข userid ได้ *api/admin/users/2/
     path('api/admin/users/<int:user_id>/', admin_get_user),
